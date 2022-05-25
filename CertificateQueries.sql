@@ -59,4 +59,19 @@ GROUP BY
 	"Parent Information" 
 HAVING 
 	Count("Name of Class") = 4; --Math two is new there should be no parents meeting this criteria
+
+--Career Development program of Study (9 Sessions)
+SELECT 
+	DISTINCT ("Parent Information"), "Parent Name"
+From
+	R_certificate_csv rcc 
+WHERE
+	"Name of Class" IN 
+	('Public Speaking Pt. 1', 'Public Speaking Pt. 2', 'Resume Writing', 'SMART Goals Pt. 1', 
+	'SMART Goals Pt. 2', 'Time Management Pt. 1', 'Time Management Pt. 2', 'Managing Difficult Conversations Pt. 1',
+	'Managing Difficult Conversations Pt. 2')
+GROUP BY 
+	"Parent Information" 
+HAVING 
+	Count("Name of Class") = 9;
 	
