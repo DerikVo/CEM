@@ -43,22 +43,11 @@ SELECT
 From
 	R_certificate_csv rcc 
 WHERE
-	"Name of Class" IN ('Typing-1')
+	"Name of Class" IN ('LinkedIn-1', 'LinkedIn-2')
 GROUP BY 
 	"Parent Information" 
 HAVING 
-	Count("Name of Class") = 1;
---Typing Certificates
-SELECT 
-	"Parent Information", "Parent Name", "Date"
-From
-	R_certificate_csv rcc 
-WHERE
-	"Name of Class" IN ('Typing-1')
-GROUP BY 
-	"Parent Information" 
-HAVING 
-	Count("Name of Class") = 1;
+	Count("Name of Class") = 2; --fixed code, was pulling typing courses instead of linkedin.
 --Math Certificates
 SELECT 
 	"Parent Information", "Parent Name", "Date"
