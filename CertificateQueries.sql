@@ -74,4 +74,18 @@ GROUP BY
 	"Parent Information" 
 HAVING 
 	Count("Name of Class") = 9;
+
+--Career Exploration program of Study (3 Sessions)
+SELECT 
+	DISTINCT ("Parent Information"), "Parent Name"
+From
+	R_certificate_csv rcc 
+WHERE
+	"Name of Class" IN 
+	('Career Exploration Program of Study Pt. 1', 'Career Exploration Program of Study Pt. 2',
+	'Career Exploration Program of Study Pt. 3')
+GROUP BY 
+	"Parent Information" 
+HAVING 
+	Count("Name of Class") = 3;
 	
