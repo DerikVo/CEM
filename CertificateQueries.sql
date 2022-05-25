@@ -48,4 +48,26 @@ GROUP BY
 	"Parent Information" 
 HAVING 
 	Count("Name of Class") = 1;
+--Typing Certificates
+SELECT 
+	"Parent Information", "Parent Name", "Date"
+From
+	R_certificate_csv rcc 
+WHERE
+	"Name of Class" IN ('Typing-1')
+GROUP BY 
+	"Parent Information" 
+HAVING 
+	Count("Name of Class") = 1;
+--Math Certificates
+SELECT 
+	"Parent Information", "Parent Name", "Date"
+From
+	R_certificate_csv rcc 
+WHERE
+	"Name of Class" IN ('Math-1 pt. 1', 'Math-1 pt. 2', 'Math-2 pt. 1', 'Math-1 pt. 2')
+GROUP BY 
+	"Parent Information" 
+HAVING 
+	Count("Name of Class") = 4; --Math two is new there should be no parents meeting this criteria
 	
