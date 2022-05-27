@@ -95,16 +95,14 @@ HAVING
 	Count(DISTINCT("Name of Class")) >= 9;
 --Pulls Career Exploration program of study
 SELECT 
-	DISTINCT(rc."Parent Information") as ID, rp."First Name" || " " || rp."Last Name" as Name, rp."Email", "Career Development Certificate"
+	DISTINCT(rc."Parent Information") as ID, rp."First Name" || " " || rp."Last Name" as Name, rp."Email", "Career Exploration Certificate"
 From
 	R_certificate_csv rc
 	JOIN
 	R_parentInfo_csv rp on rc."Parent Information" = rp."Parent Academy ID" 
 WHERE
 	"Name of Class" IN 
-	('Public Speaking Pt. 1', 'Public Speaking Pt. 2', 'Resume Writing', 'SMART Goals Pt. 1', 
-	'SMART Goals Pt. 2', 'Time Management Pt. 1', 'Time Management Pt. 2', 'Managing Difficult Conversations Pt. 1',
-	'Managing Difficult Conversations Pt. 2')
+	('Career Exploration Program of Study Pt. 1', 'Career Exploration Program of Study Pt. 2', 'Career Exploration Program of Study Pt. 3')
 	 AND
  	rp."Receptive to Email" ="Yes"
 GROUP BY 
