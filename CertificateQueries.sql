@@ -10,7 +10,7 @@ WHERE
 GROUP BY 
 	"Parent Information" 
 HAVING 
-	Count("Name of Class") >= 2;
+	Count(DISTINCT("Name of Class")) >= 2;
 --Pulls Google Drive Certificate
 SELECT 
 	DISTINCT(rc."Parent Information") as ID, rp."First Name" || " " || rp."Last Name" as Name, "Google Drive Certificate"
@@ -24,7 +24,7 @@ WHERE
 GROUP BY 
 	"Parent Information" 
 HAVING 
-	Count("Name of Class") >= 7;
+	Count(DISTINCT("Name of Class")) >= 7;
 --Pulls Typing Certificate
 SELECT 
 	DISTINCT(rc."Parent Information") as ID, rp."First Name" || " " || rp."Last Name" as Name, "Typing Certificate"
@@ -37,7 +37,7 @@ WHERE
 GROUP BY 
 	"Parent Information" 
 HAVING 
-	Count("Name of Class") >= 1;
+	Count(DISTINCT("Name of Class")) >= 1;
 --Pulls LinkedIn Certificate
 SELECT 
 	DISTINCT(rc."Parent Information") as ID, rp."First Name" || " " || rp."Last Name" as Name, "LinkedIn Certificate"
@@ -63,7 +63,7 @@ WHERE
 GROUP BY 
 	"Parent Information" 
 HAVING 
-	Count("Name of Class") >= 4;
+	Count(DISTINCT("Name of Class")) >= 4;
 --Pulls Career Development program of study
 SELECT 
 	DISTINCT(rc."Parent Information") as ID, rp."First Name" || " " || rp."Last Name" as Name, "Career Development Certificate"
@@ -79,7 +79,7 @@ WHERE
 GROUP BY 
 	"Parent Information" 
 HAVING 
-	Count("Name of Class") >= 9;
+	Count(DISTINCT("Name of Class")) >= 9;
 --Pulls Career Exploration program of study
 SELECT 
 	DISTINCT(rc."Parent Information") as ID, rp."First Name" || " " || rp."Last Name" as Name, "Career Development Certificate"
@@ -95,4 +95,4 @@ WHERE
 GROUP BY 
 	"Parent Information" 
 HAVING 
-	Count("Name of Class") >= 3;
+	Count(DISTINCT("Name of Class")) >= 3;
