@@ -7,7 +7,7 @@ From
 	JOIN
 	R_parentInfo_csv rp on rc."Parent Information" = rp."Parent Academy ID" 
 WHERE 
- 	"Name of Class" IN ("Zoom-1", "Zoom-2")
+ 	"Name of Class" IN ('Zoom-1', 'Zoom-2')
 	AND
  	rp."Receptive to Email" ="Yes"
 	AND
@@ -67,7 +67,7 @@ WHERE
 GROUP BY 
 	"Parent Information" 
 HAVING 
-	Count("Name of Class") = 2;
+	Count(DISTINCT("Name of Class")) = 2;
 --Pulls Math Certificate
 SELECT 
 	DISTINCT(rc."Parent Information") as ID, rp."First Name" || " " || rp."Last Name" as Name, rp."Email", "Math Certificate"
