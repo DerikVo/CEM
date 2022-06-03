@@ -1,3 +1,11 @@
+/*
+
+This code is being retired in favor of a more dynamic process of getting reports. 
+This repo will remain for future reference and validating outputs of the dynamic version. 
+
+Derik Vo
+20220602
+*/
 
 --Pulls Zoom Certificate
 SELECT 
