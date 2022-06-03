@@ -32,7 +32,7 @@ From
 	JOIN
 	R_parentInfo_csv rp on rc."Parent Information" = rp."Parent Academy ID" 
 WHERE 
- 	"Name of Class" IN ('Google Docs Practice Session' , 'Google Drive Practice Session', 'Google Drive-1', 'Google Drive-2', 'Google Drive-3 Pt. 1' , 'Google Drive-3 Pt. 1', 
+ 	"Name of Class" IN ('Google Docs Practice Session' , 'Google Drive Practice Session', 'Google Drive-1', 'Google Drive-2', 'Google Drive-3 Pt. 1', 
  	'Google Drive-3 Pt. 2', 'Google Drive-4')
 	AND
  	rp."Receptive to Email" ="Yes"
