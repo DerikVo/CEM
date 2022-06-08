@@ -1,10 +1,9 @@
 /*
 
-This code is being retired in favor of a more dynamic process of getting reports. 
-This repo will remain for future reference and validating outputs of the dynamic version. 
+Added additional explanation and documentation on how code works.
 
 Derik Vo
-20220602
+20220608
 */
 
 --Pulls Zoom Certificate
@@ -14,7 +13,7 @@ From
 	R_certificate_csv rc
 	JOIN
 	R_parentInfo_csv rp on rc."Parent Information" = rp."Parent Academy ID" 
-WHERE 
+WHERE --Filters the query so only students who took a zoom classes is displayed
  	"Name of Class" IN ('Zoom-1', 'Zoom-2')
 	AND
  	rp."Receptive to Email" ="Yes"
@@ -23,7 +22,8 @@ WHERE
 GROUP BY 
 	"Parent Information" 
 HAVING 
-	Count(DISTINCT("Name of Class")) = 2;
+	Count(DISTINCT("Name of Class")) = 2; --Identifies queries from the WHERE statment and uses unique classes to filter out people who repeated the class.
+
 --Pulls Google Drive Certificate
 SELECT 
 	DISTINCT(rc."Parent Information") as ID, rp."First Name" || " " || rp."Last Name" as Name, rp."Email", "Google Drive Certificate"
@@ -59,6 +59,7 @@ GROUP BY
 	"Parent Information" 
 HAVING 
 	Count(DISTINCT("Name of Class")) = 1;
+
 --Pulls LinkedIn Certificate
 SELECT 
 	DISTINCT(rc."Parent Information") as ID, rp."First Name" || " " || rp."Last Name" as Name, rp."Email", "LinkedIn Certificate"
@@ -93,6 +94,7 @@ GROUP BY
 	"Parent Information" 
 HAVING 
 	Count(DISTINCT("Name of Class")) = 4;
+
 --Pulls Career Development program of study
 SELECT 
 	DISTINCT(rc."Parent Information") as ID, rp."First Name" || " " || rp."Last Name" as Name, rp."Email", "Career Development Certificate"
@@ -113,6 +115,7 @@ GROUP BY
 	"Parent Information" 
 HAVING 
 	Count(DISTINCT("Name of Class")) = 9;
+
 --Pulls Career Exploration program of study
 SELECT 
 	DISTINCT(rc."Parent Information") as ID, rp."First Name" || " " || rp."Last Name" as Name, rp."Email", "Career Exploration Certificate"
