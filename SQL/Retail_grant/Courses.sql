@@ -13,4 +13,4 @@ WHERE
 	OR
 	"Course Title" LIKE "%Customer%"
 GROUP BY
-	College, "Course Title" 
+	Term, College, "Course Title" 
