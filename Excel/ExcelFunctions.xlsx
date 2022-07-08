@@ -1,1 +1,2 @@
-=MID(A2, FIND("/",A2)-2,8 #finds the date of with in the course description box. Finds the first slash moves two characters to the left and pulls the next 8 characers.
+#Finds and extract date from description
+=MID(A2, FIND("/",A2)-2,8 --finds the date of with in the course description box. Finds the first slash moves two characters to the left and pulls the next 8 characers.
