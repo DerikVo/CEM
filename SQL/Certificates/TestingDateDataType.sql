@@ -20,7 +20,7 @@ UPDATE
 SET
 	"DateDash" = "2020-12-13", --YYYY-MM-DD
 	"DateDash2" = "2020-13-12"; --YYYY-DD-MM
-  "DateSlash" = "2020/12/13", --YYYY-MM-DD
+  	"DateSlash" = "2020/12/13", --YYYY-MM-DD
 	"DateSlash2" = "2020/13/12"; --YYYY-DD-MM
 	
 SELECT
