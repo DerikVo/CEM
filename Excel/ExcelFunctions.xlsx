@@ -3,3 +3,6 @@
 
 #prepares data to import into external database
 =CONCATENATE(TEXT(E2, "MM/DD/YYYY")," ",G2," to ",TEXT(E2, "MM/DD/YYYY")," ", H2)
+
+#check to see if parents are added to database by comparing inport CSV to database CSV
+=IF(ISNA(VLOOKUP(G2, Sheet1!$A$1:$C$322, 3, FALSE)), "No", "Yes")
