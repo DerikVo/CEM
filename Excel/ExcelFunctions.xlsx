@@ -1,5 +1,6 @@
 #Finds and extract date from description
 =MID(A2, FIND("/",A2)-2,8 --finds the date of with in the course description box. Finds the first slash moves two characters to the left and pulls the next 8 characers.
+=MID(C2,FIND("-",C2)+2,LEN(C2)) -- Uses len instead to find the length of characters in string since there is no content to the right of desired text
 
 #prepares data to import into external database
 =CONCATENATE(TEXT(E2, "MM/DD/YYYY")," ",G2," to ",TEXT(E2, "MM/DD/YYYY")," ", H2)
