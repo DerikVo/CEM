@@ -195,7 +195,7 @@ Check other pertient information to make an educated guess, and note change in d
 /* 
  
  Do not run yet. Job corps listing spans across different cities.
- Need approval before listing all locations as just "one job corp"
+ Need approval before listing all locations as just one "job corp"
  
 	UPDATE
 		Mapin
