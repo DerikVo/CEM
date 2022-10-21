@@ -1,9 +1,17 @@
+
 SELECT
 	*
 FROM
 	Mapin
 ORDER BY
-	Date Desc;
+	"Date" DESC;
+
+-- Used to formating casing of entries and remove trailing spaces
+UPDATE 
+	Mapin
+SET
+	"Home School" = Proper(Trim("Home School"));
+
 
 -- Identifies Unique schools entries, including variations
 SELECT
@@ -19,9 +27,9 @@ SELECT
 FROM
 	Mapin
 WHERE
-	"Home School" LIKE "%yer%"
+	"Home School" LIKE "%evh%" --use last query as template for like condition
 GROUP BY
-	"Home School"; -- since we're using an aggregate (count) we will need group by for all values to be displayed // will need to add group by to each query
+	"Home School";
 
 
 /*
@@ -74,17 +82,19 @@ SELECT
 	FROM
 		Mapin
 	WHERE
-		"Home School" LIKE "%incoln%"
+		"Home School" LIKE "%inc%"
 		OR
-		"Home School"  LIKE "%Abraham%";
+		"Home School" LIKE "%abraham%"
+	GROUP BY
+		"Home School";
 UPDATE
 		Mapin
 	SET
 		"Home School" = "Abraham Lincoln High School"
 	WHERE
-		"Home School" LIKE "%incoln%"
+		"Home School" LIKE "%inc%"
 		OR
-		"Home School"  LIKE "%Abraham%"; --a similar school called Branham needs to be manually compared
+		"Home School"  LIKE "%abraham%"; --a similar school called Branham needs to be manually compared
 
 --Adrian C Wilcox High School
 SELECT
@@ -94,7 +104,9 @@ SELECT
 	WHERE
 		"Home School" LIKE "%ilcox%"
 		OR
-		"Home School"  LIKE "%drian%";
+		"Home School"  LIKE "%drian%"
+	GROUP BY
+		"Home School";
 UPDATE 
 		Mapin
 	SET
@@ -110,7 +122,9 @@ SELECT
 	FROM
 		Mapin
 	WHERE
-		"Home School" LIKE "%ndrew%";	
+		"Home School" LIKE "%ndrew%"
+	GROUP BY
+		"Home School";	
 UPDATE 
 		Mapin
 	SET
@@ -124,7 +138,9 @@ SELECT
 	FROM
 		Mapin
 	WHERE
-		"Home School" LIKE "%pollo%";
+		"Home School" LIKE "%pollo%"
+	GROUP BY
+		"Home School";
 UPDATE 
 		Mapin
 	SET
@@ -138,7 +154,9 @@ SELECT
 	FROM
 		Mapin
 	WHERE
-		"Home School" LIKE "%Boy%";
+		"Home School" LIKE "%Boy%"
+	GROUP BY
+		"Home School";
 UPDATE 
 		Mapin
 	SET
@@ -154,7 +172,9 @@ SELECT
 	WHERE
 		"Home School" LIKE "%Branham%"
 		OR
-		"Home School" = "Brannam High School";
+		"Home School" = "Brannam High School"
+	GROUP BY
+		"Home School";
 	
 UPDATE 
 		Mapin
@@ -171,7 +191,9 @@ SELECT
 	FROM
 		Mapin
 	WHERE
-		"Home School" LIKE "%Broadway%";
+		"Home School" LIKE "%Broadway%"
+	GROUP BY
+		"Home School";
 UPDATE 
 		Mapin
 	SET
@@ -187,7 +209,9 @@ SELECT
 	WHERE
 		"Home School" LIKE "%Cala%"
 		OR
-		"Home School"  = "Cal Hills High School";
+		"Home School"  = "Cal Hills High School"
+	GROUP BY
+		"Home School";
 UPDATE 
 		Mapin
 	SET
@@ -205,7 +229,9 @@ SELECT
 	WHERE
 		"Home School" LIKE "%Calero%"
 		OR
-		"Home School"  LIKE "Call%";
+		"Home School"  LIKE "Call%"
+	GROUP BY
+		"Home School";
 UPDATE 
 		Mapin
 	SET
@@ -221,7 +247,9 @@ SELECT
 FROM
 	Mapin
 WHERE
-	"Home School" LIKE "Del%";
+	"Home School" LIKE "Del%"
+	GROUP BY
+		"Home School";
 
 UPDATE 
 		Mapin
@@ -238,7 +266,11 @@ SELECT
 	WHERE
 		"Home School" LIKE "%Evergreen%"
 		AND
-		"Home School" LIKE "%h%";
+		"Home School" LIKE "%h%"
+		OR
+		"Home School" LIKE "EVH%" -- assuming EVHS is the abbreviation of evergreen valley high shool
+	GROUP BY
+		"Home School";
 	
 UPDATE 
 		Mapin
@@ -247,7 +279,10 @@ UPDATE
 	WHERE
 		"Home School" LIKE "%Evergreen%"
 		AND
-		"Home School" LIKE "%h%";
+		"Home School" LIKE "%h%"
+		OR
+		"Home School" LIKE "EVH%";
+		
 
 --Evergreen Valley Community College
 SELECT
@@ -257,7 +292,9 @@ SELECT
 	WHERE
 		"Home School" LIKE "%Ever%"
 		AND
-		"Home School" LIKE "%com%";
+		"Home School" LIKE "%com%"
+	GROUP BY
+		"Home School";
 UPDATE 
 		Mapin
 	SET
@@ -273,7 +310,9 @@ SELECT
 	FROM
 		Mapin
 	WHERE
-		"Home School" LIKE "%Gun%";
+		"Home School" LIKE "%Gun%"
+	GROUP BY
+		"Home School";
 UPDATE 
 		Mapin
 	SET
@@ -287,7 +326,9 @@ SELECT
 	FROM
 		Mapin
 	WHERE
-		"Home School" LIKE "%Foothill%";
+		"Home School" LIKE "%Foothill%"
+	GROUP BY
+		"Home School";
 UPDATE 
 		Mapin
 	SET
@@ -303,7 +344,9 @@ SELECT
 	WHERE
 		"Home School" LIKE "%indep%"
 		AND
-		"Home School"  NOT LIKE "%tudies";
+		"Home School"  NOT LIKE "%tudies"
+	GROUP BY
+		"Home School";
 UPDATE
 		Mapin
 	SET
@@ -319,7 +362,9 @@ SELECT
 	FROM
 		Mapin
 	WHERE
-		"Home School" LIKE "%lick%";
+		"Home School" LIKE "%lick%"
+	GROUP BY
+		"Home School";
 UPDATE
 		Mapin
 	SET
@@ -346,7 +391,9 @@ SELECT
 	FROM
 		Mapin
 	WHERE
-		"Home School" LIKE "%lei%";
+		"Home School" LIKE "%lei%"
+	GROUP BY
+		"Home School";
 UPDATE
 		Mapin
 	SET
@@ -360,7 +407,9 @@ SELECT
 	FROM
 		Mapin
 	WHERE
-		"Home School" LIKE "%leland%";
+		"Home School" LIKE "%leland%"
+	GROUP BY
+		"Home School";
 UPDATE
 		Mapin
 	SET
@@ -374,7 +423,9 @@ SELECT
 	FROM
 		Mapin
 	WHERE
-		"Home School" LIKE "%lib%";
+		"Home School" LIKE "%lib%"
+	GROUP BY
+		"Home School";
 UPDATE
 		Mapin
 	SET
@@ -388,7 +439,9 @@ SELECT
 	FROM
 		Mapin
 	WHERE
-		"Home School" LIKE "%gatos%";
+		"Home School" LIKE "%gatos%"
+	GROUP BY
+		"Home School";
 UPDATE
 		Mapin
 	SET
@@ -402,7 +455,9 @@ SELECT
 	FROM
 		Mapin
 	WHERE
-		"Home School" LIKE "%lyn%";
+		"Home School" LIKE "%lyn%"
+	GROUP BY
+		"Home School";
 UPDATE
 		Mapin
 	SET
@@ -418,7 +473,9 @@ SELECT
 	WHERE
 		"Home School" LIKE "%milp%"
 		AND
-		"Home School" NOT LIKE "OYA%";
+		"Home School" NOT LIKE "OYA%"
+	GROUP BY
+		"Home School";
 UPDATE
 		Mapin
 	SET
@@ -436,7 +493,9 @@ SELECT
 	WHERE
 		"Home School" LIKE "%mil%"
 		AND
-		"Home School" LIKE "%middle%";
+		"Home School" LIKE "%middle%"
+	GROUP BY
+		"Home School";
 UPDATE
 		Mapin
 	SET
@@ -454,7 +513,9 @@ SELECT
 	WHERE
 		"Home School" LIKE "%pleasant%"
 		AND
-		"Home School" NOT LIKE "%hill%";
+		"Home School" NOT LIKE "%hill%"
+	GROUP BY
+		"Home School";
 UPDATE
 		Mapin
 	SET
@@ -470,7 +531,9 @@ SELECT
 	FROM
 		Mapin
 	WHERE
-		"Home School" LIKE "%new%";
+		"Home School" LIKE "%new%"
+	GROUP BY
+		"Home School";
 UPDATE
 		Mapin
 	SET
@@ -484,7 +547,9 @@ SELECT
 	FROM
 		Mapin
 	WHERE
-		"Home School" LIKE "%oak%";
+		"Home School" LIKE "%oak%"
+	GROUP BY
+		"Home School";
 UPDATE
 		Mapin
 	SET
@@ -498,7 +563,9 @@ SELECT
 	FROM
 		Mapin
 	WHERE
-		"Home School" LIKE "%opp%";
+		"Home School" LIKE "%opp%"
+	GROUP BY
+		"Home School";
 UPDATE
 		Mapin
 	SET
@@ -512,21 +579,54 @@ SELECT
 	FROM
 		Mapin
 	WHERE
-		"Home School" LIKE "%peg%";
+		"Home School" LIKE "%peg%"
+	GROUP BY
+		"Home School";
 UPDATE
 		Mapin
 	SET
 		"Home School" = "Pegasus High School"
 	WHERE
 		"Home School" LIKE "%peg%";
+--Pheonix High School
+SELECT
+	DISTINCT("Home School") ,Count("Home School") AS 'Count'
+	FROM
+		Mapin
+	WHERE
+		"Home School" LIKE "%ph%"
+		AND
+		"Home School" LIKE "%high%"
+		AND
+		"Home School" NOT LIKE "%uni%"
+		AND
+		"Home School" NOT LIKE "santa%"
+	GROUP BY
+		"Home School";
+UPDATE
+		Mapin
+	SET
+		"Home School" = "Phoenix High School"
+	WHERE
+		"Home School" LIKE "%ph%"
+		AND
+		"Home School" LIKE "%high%"
+		AND
+		"Home School" NOT LIKE "%uni%"
+		AND
+		"Home School" NOT LIKE "santa%";
 
+	
+	
 --Piedmont Hills High School
 SELECT
 	DISTINCT("Home School") ,Count("Home School") AS 'Count'
 	FROM
 		Mapin
 	WHERE
-		"Home School" LIKE "%pied%";
+		"Home School" LIKE "%pied%"
+	GROUP BY
+		"Home School";
 UPDATE
 		Mapin
 	SET
@@ -540,7 +640,9 @@ SELECT
 	FROM
 		Mapin
 	WHERE
-		"Home School" LIKE "%pio%";
+		"Home School" LIKE "%pio%"
+	GROUP BY
+		"Home School";
 UPDATE
 		Mapin
 	SET
@@ -554,7 +656,9 @@ SELECT
 	FROM
 		Mapin
 	WHERE
-		"Home School" LIKE "%pro%";
+		"Home School" LIKE "%pro%"
+	GROUP BY
+		"Home School";
 UPDATE
 		Mapin
 	SET
@@ -572,7 +676,9 @@ SELECT
 		AND
 		"Home School" NOT LIKE "%corps%"
 		AND
-		"Home School" NOT LIKE "%Jesuit%";
+		"Home School" NOT LIKE "%Jesuit%"
+	GROUP BY
+		"Home School";
 UPDATE
 		Mapin
 	SET
@@ -590,7 +696,9 @@ SELECT
 	FROM
 		Mapin
 	WHERE
-		"Home School" LIKE "%over%";
+		"Home School" LIKE "%over%"
+	GROUP BY
+		"Home School";
 UPDATE
 		Mapin
 	SET
@@ -605,7 +713,9 @@ SELECT
 	WHERE
 		"Home School" LIKE "%Clara%"
 		AND
-		"Home School" NOT LIKE "%community%";
+		"Home School" NOT LIKE "%community%"
+	GROUP BY
+		"Home School";
 UPDATE
 		Mapin
 	SET
@@ -623,7 +733,9 @@ SELECT
 	WHERE
 		"Home School" LIKE "%Tere%"
 		AND
-		"Home School" NOT LIKE "%pho%";
+		"Home School" NOT LIKE "%pho%"
+	GROUP BY
+		"Home School";
 UPDATE
 		Mapin
 	SET
@@ -639,7 +751,9 @@ SELECT
 	FROM
 		Mapin
 	WHERE
-		"Home School" LIKE "%sara%";
+		"Home School" LIKE "%sara%"
+	GROUP BY
+		"Home School";
 UPDATE
 		Mapin
 	SET
@@ -652,7 +766,9 @@ SELECT
 	FROM
 		Mapin
 	WHERE
-		"Home School" LIKE "%silv%";
+		"Home School" LIKE "%silv%"
+	GROUP BY
+		"Home School";
 UPDATE
 		Mapin
 	SET
@@ -666,7 +782,9 @@ SELECT
 	FROM
 		Mapin
 	WHERE
-		"Home School" LIKE "%westm%";
+		"Home School" LIKE "%westm%"
+	GROUP BY
+		"Home School";
 UPDATE
 		Mapin
 	SET
@@ -680,7 +798,9 @@ SELECT
 	FROM
 		Mapin
 	WHERE
-		"Home School" LIKE "%willow%";
+		"Home School" LIKE "%willow%"
+	GROUP BY
+		"Home School";
 UPDATE
 		Mapin
 	SET
@@ -694,7 +814,9 @@ SELECT
 	FROM
 		Mapin
 	WHERE
-		"Home School" LIKE "%wils%";
+		"Home School" LIKE "%wils%"
+	GROUP BY
+		"Home School";
 UPDATE
 		Mapin
 	SET
@@ -707,16 +829,16 @@ SELECT
 	FROM
 		Mapin
 	WHERE
-	"Home School" LIKE "%buena%"
-	OR
-	"Home School" LIKE "yer%";
+		"Home School" LIKE "%buena%"
+		OR
+		"Home School"
+	GROUP BY
+		"Home School";
 UPDATE
 		Mapin
 	SET
 		"Home School" = "Yerba Buena High School"
 	WHERE
-		"Home School" LIKE "%buena%"
-	OR
-		"Home School" LIKE "yer%";
+		"Home School" LIKE "%buena%";
 
 
