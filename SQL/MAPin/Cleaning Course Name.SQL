@@ -1,4 +1,9 @@
-
+SELECT
+	*
+FROM
+	Mapin
+ORDER BY Date
+	desc;
 
 /*
 Online catealog used as a referience to rename classes
@@ -203,7 +208,9 @@ SELECT
 	WHERE
 		"Class / Teacher" LIKE "%auto%"
 		AND
-		"Class / Teacher" LIKE "%service%"
+		("Class / Teacher" LIKE "%service%"
+		OR
+		"Class / Teacher"  LIKE "%tive%")
 		AND
 		"Class / Teacher" NOT LIKE "%pm%"
 		AND
@@ -218,11 +225,13 @@ UPDATE
 	WHERE
 		"Class / Teacher" LIKE "%auto%"
 		AND
-		"Class / Teacher" LIKE "%service%"
+		("Class / Teacher" LIKE "%service%"
+		OR
+		"Class / Teacher"  LIKE "%tive%")
 		AND
 		"Class / Teacher" NOT LIKE "%pm%"
 		AND
-		"Class / Teacher"  NOT LIKE "%AM%";
+		"Class / Teacher" NOT LIKE "%AM%";
 
 --Automotive Services (AM)
 SELECT
@@ -365,7 +374,71 @@ UPDATE
 		AND
 		"Class / Teacher" LIKE "%AM%";
 
---Electrical Maintenance (Not Specified)
+--Dental Assisting (Not Specified)
+SELECT
+	DISTINCT("Class / Teacher"), COUNT ("Class / Teacher")
+	FROM
+		Mapin
+	WHERE
+		"Class / Teacher" LIKE ("%dent%")
+		AND
+		"Class / Teacher" NOT LIKE ("%AM%")
+		AND
+		"Class / Teacher" NOT LIKE ("%PM%")
+	GROUP BY
+		"Class / Teacher";
+
+UPDATE
+	Mapin
+	SET
+		"Class / Teacher" = "Dental Assisting (Not Specified)"
+	WHERE
+		"Class / Teacher" LIKE ("%dent%")
+		AND
+		"Class / Teacher" NOT LIKE ("%AM%")
+		AND
+		"Class / Teacher" NOT LIKE ("%PM%");
+--Dental Assisting (AM)
+SELECT
+	DISTINCT("Class / Teacher"), COUNT ("Class / Teacher")
+	FROM
+		Mapin
+	WHERE
+		"Class / Teacher" LIKE ("%dent%")
+		AND
+		"Class / Teacher" LIKE ("%AM%")
+	GROUP BY
+		"Class / Teacher";
+
+UPDATE
+	Mapin
+	SET
+		"Class / Teacher" = "Dental Assisting (Not Specified)"
+	WHERE
+		"Class / Teacher" LIKE ("%dent%")
+		AND
+		"Class / Teacher" LIKE ("%AM%");
+--Dental Assisting (PM)
+SELECT
+	DISTINCT("Class / Teacher"), COUNT ("Class / Teacher")
+	FROM
+		Mapin
+	WHERE
+		"Class / Teacher" LIKE ("%dent%")
+		AND
+		"Class / Teacher" LIKE ("%PM%")
+	GROUP BY
+		"Class / Teacher";
+
+UPDATE
+	Mapin
+	SET
+		"Class / Teacher" = "Dental Assisting (PM)"
+	WHERE
+		"Class / Teacher" LIKE ("%dent%")
+		AND
+		"Class / Teacher" LIKE ("%PM%");
+	--Electrical Maintenance (Not Specified)
 SELECT
 	DISTINCT("Class / Teacher"), COUNT("Class / Teacher")
 	FROM
@@ -432,84 +505,7 @@ UPDATE
 		AND
 		"Class / Teacher" LIKE "%AM%";
 
---Medical Assisting (Not Specified)
-SELECT
-	DISTINCT("Class / Teacher"), COUNT("Class / Teacher")
-	FROM
-		Mapin
-	WHERE
-		"Class / Teacher" LIKE "%as%"
-		AND
-		"Class / Teacher"  LIKE "%me%"
-		AND
-		"Class / Teacher" NOT LIKE "%AM%"
-		AND
-		"Class / Teacher"  NOT LIKE "%pm%"
-	GROUP BY
-		"Class / Teacher";
-	
-UPDATE
-	Mapin
-	SET
-		"Class / Teacher" = "Medical Assisting (Not Specified)"
-	WHERE
-		"Class / Teacher" LIKE "%as%"
-		AND
-		"Class / Teacher"  LIKE "%me%"
-		AND
-		"Class / Teacher" NOT LIKE "%AM%"
-		AND
-		"Class / Teacher"  NOT LIKE "%pm%";
 
---Medical Assisting (PM)
-SELECT
-	DISTINCT("Class / Teacher"), COUNT("Class / Teacher")
-	FROM
-		Mapin
-	WHERE
-		"Class / Teacher" LIKE "%as%"
-		AND
-		"Class / Teacher"  LIKE "%me%"
-		AND
-		"Class / Teacher"  LIKE "%pm%"
-	GROUP BY
-		"Class / Teacher";
-	
-UPDATE
-	Mapin
-	SET
-		"Class / Teacher" = "Medical Assisting (PM)"
-	WHERE
-		"Class / Teacher" LIKE "%as%"
-		AND
-		"Class / Teacher"  LIKE "%me%"
-		AND
-		"Class / Teacher"  LIKE "%pm%";
-
---Medical Assisting (AM)
-SELECT
-	DISTINCT("Class / Teacher"), COUNT("Class / Teacher")
-	FROM
-		Mapin
-	WHERE
-		"Class / Teacher" LIKE "%as%"
-		AND
-		"Class / Teacher"  LIKE "%me%"
-		AND
-		"Class / Teacher"  LIKE "%AM%"
-	GROUP BY
-		"Class / Teacher";
-	
-UPDATE
-	Mapin
-	SET
-		"Class / Teacher" = "Medical Assisting (AM)"
-	WHERE
-		"Class / Teacher" LIKE "%as%"
-		AND
-		"Class / Teacher"  LIKE "%me%"
-		AND
-		"Class / Teacher"  LIKE "%AM%";
 
 --Fashion Design (Not Specified)
 SELECT
@@ -825,15 +821,38 @@ UPDATE
 		"Class / Teacher" LIKE "%spor%")
 		AND
 		"Class / Teacher" LIKE "%AM%";
---Sports Medicine & Kinesiology (PM)
+--Law Enforcement (Not Specified)
 SELECT
 	DISTINCT("Class / Teacher"), COUNT("Class / Teacher")
 	FROM
 		Mapin
 	WHERE
-		("Class / Teacher" LIKE "%kin%"
-		OR
-		"Class / Teacher" LIKE "%spor%")
+		"Class / Teacher" LIKE "%law%"
+		AND
+		"Class / Teacher" NOT LIKE "%AM%"
+		AND
+		"Class / Teacher" NOT LIKE "%PM%"
+	GROUP BY
+		"Class / Teacher";
+	
+UPDATE
+	Mapin
+	SET
+		"Class / Teacher" = "Law Enforcement (Not Specified)"
+	WHERE
+		"Class / Teacher" LIKE "%law%"
+		AND
+		"Class / Teacher" NOT LIKE "%AM%"
+		AND
+		"Class / Teacher" NOT LIKE "%PM%";
+
+--Law Enforcement (PM)
+SELECT
+	DISTINCT("Class / Teacher"), COUNT("Class / Teacher")
+	FROM
+		Mapin
+	WHERE
+		"Class / Teacher" LIKE "%law%"
 		AND
 		"Class / Teacher" LIKE "%PM%"
 	GROUP BY
@@ -842,11 +861,367 @@ SELECT
 UPDATE
 	Mapin
 	SET
-		"Class / Teacher" = "Sports Medicine & Kinesiology (PM)"
+		"Class / Teacher" = "Law Enforcement (PM)"
 	WHERE
-		("Class / Teacher" LIKE "%kin%"
-		OR
-		"Class / Teacher" LIKE "%spor%")
+		"Class / Teacher" LIKE "%law%"
 		AND
 		"Class / Teacher" LIKE "%PM%";
 
+--Law Enforcement (AM)
+SELECT
+	DISTINCT("Class / Teacher"), COUNT("Class / Teacher")
+	FROM
+		Mapin
+	WHERE
+		"Class / Teacher" LIKE "%law%"
+		AND
+		"Class / Teacher" LIKE "%AM%"
+	GROUP BY
+		"Class / Teacher";
+	
+UPDATE
+	Mapin
+	SET
+		"Class / Teacher" = "Law Enforcement (AM)"
+	WHERE
+		"Class / Teacher" LIKE "%law%"
+		AND
+		"Class / Teacher" LIKE "%AM%";
+--Mechatronics Engineering (Not Specified)
+SELECT
+	DISTINCT("Class / Teacher"), COUNT("Class / Teacher") 
+	FROM
+		Mapin
+	WHERE
+		"Class / Teacher" LIKE "%mech%"
+		AND
+		"Class / Teacher" NOT LIKE "%truc%"
+		AND
+		"Class / Teacher" NOT LIKE ("%am%")
+		AND
+		"Class / Teacher" NOT LIKE ("%pm%")
+	GROUP BY
+		"Class / Teacher";
+UPDATE 
+	Mapin
+	SET
+		"Class / Teacher" = "Mechatronics Engineering (Not Specified)"
+	WHERE
+		"Class / Teacher" LIKE "%mech%"
+		AND
+		"Class / Teacher" NOT LIKE "%truc%"
+		AND
+		"Class / Teacher" NOT LIKE ("%am%")
+		AND
+		"Class / Teacher" NOT LIKE ("%pm%");
+
+--Mechatronics Engineering (AM)
+SELECT
+	DISTINCT("Class / Teacher"), COUNT("Class / Teacher") 
+	FROM
+		Mapin
+	WHERE
+		"Class / Teacher" LIKE "%mech%"
+		AND
+		"Class / Teacher" NOT LIKE "%truc%"
+		AND
+		"Class / Teacher" LIKE ("%am%")
+	GROUP BY
+		"Class / Teacher";
+UPDATE 
+	Mapin
+	SET
+		"Class / Teacher" = "Mechatronics Engineering (AM)"
+	WHERE
+		"Class / Teacher" LIKE "%mech%"
+		AND
+		"Class / Teacher" NOT LIKE "%truc%"
+		AND
+		"Class / Teacher" LIKE ("%am%");
+--Mechatronics Engineering (PM)
+SELECT
+	DISTINCT("Class / Teacher"), COUNT("Class / Teacher") 
+	FROM
+		Mapin
+	WHERE
+		"Class / Teacher" LIKE "%mech%"
+		AND
+		"Class / Teacher" NOT LIKE "%truc%"
+		AND
+		"Class / Teacher" LIKE ("%pm%")
+	GROUP BY
+		"Class / Teacher";
+UPDATE 
+	Mapin
+	SET
+		"Class / Teacher" = "Mechatronics Engineering (PM)"
+	WHERE
+		"Class / Teacher" LIKE "%mech%"
+		AND
+		"Class / Teacher" NOT LIKE "%truc%"
+		AND
+		"Class / Teacher" LIKE ("%pm%");
+--Medical Assisting (Not Specified)
+SELECT
+	DISTINCT("Class / Teacher"), COUNT("Class / Teacher")
+	FROM
+		Mapin
+	WHERE
+		"Class / Teacher" LIKE "%as%"
+		AND
+		"Class / Teacher"  LIKE "%me%"
+		AND
+		"Class / Teacher" NOT LIKE "%AM%"
+		AND
+		"Class / Teacher"  NOT LIKE "%pm%"
+	GROUP BY
+		"Class / Teacher";
+	
+UPDATE
+	Mapin
+	SET
+		"Class / Teacher" = "Medical Assisting (Not Specified)"
+	WHERE
+		"Class / Teacher" LIKE "%as%"
+		AND
+		"Class / Teacher"  LIKE "%me%"
+		AND
+		"Class / Teacher" NOT LIKE "%AM%"
+		AND
+		"Class / Teacher"  NOT LIKE "%pm%";
+
+--Medical Assisting (PM)
+SELECT
+	DISTINCT("Class / Teacher"), COUNT("Class / Teacher")
+	FROM
+		Mapin
+	WHERE
+		"Class / Teacher" LIKE "%as%"
+		AND
+		"Class / Teacher"  LIKE "%me%"
+		AND
+		"Class / Teacher"  LIKE "%pm%"
+	GROUP BY
+		"Class / Teacher";
+	
+UPDATE
+	Mapin
+	SET
+		"Class / Teacher" = "Medical Assisting (PM)"
+	WHERE
+		"Class / Teacher" LIKE "%as%"
+		AND
+		"Class / Teacher"  LIKE "%me%"
+		AND
+		"Class / Teacher"  LIKE "%pm%";
+
+--Medical Assisting (AM)
+SELECT
+	DISTINCT("Class / Teacher"), COUNT("Class / Teacher")
+	FROM
+		Mapin
+	WHERE
+		"Class / Teacher" LIKE "%as%"
+		AND
+		"Class / Teacher"  LIKE "%me%"
+		AND
+		"Class / Teacher"  LIKE "%AM%"
+	GROUP BY
+		"Class / Teacher";
+	
+UPDATE
+	Mapin
+	SET
+		"Class / Teacher" = "Medical Assisting (AM)"
+	WHERE
+		"Class / Teacher" LIKE "%as%"
+		AND
+		"Class / Teacher"  LIKE "%me%"
+		AND
+		"Class / Teacher"  LIKE "%AM%";
+
+--Medical Science/Health Careers (Not Specified)
+SELECT
+	DISTINCT("Class / Teacher"), COUNT("Class / Teacher")
+	FROM
+		Mapin
+	WHERE
+		("Class / Teacher"  LIKE "%me%"
+		OR
+		"Class / Teacher" LIKE "%he%")
+		AND
+		("Class / Teacher" LIKE "%car%"
+		OR
+		"Class / Teacher" LIKE "%sci%")
+		AND
+		"Class / Teacher" NOT LIKE "%AM%"
+		AND
+		"Class / Teacher"  NOT LIKE "%pm%"
+	GROUP BY
+		"Class / Teacher";
+	
+UPDATE
+	Mapin
+	SET
+		"Class / Teacher" = "Medical Science/Health Careers (Not Specified)"
+	WHERE
+		("Class / Teacher"  LIKE "%me%"
+		OR
+		"Class / Teacher" LIKE "%he%")
+		AND
+		("Class / Teacher" LIKE "%car%"
+		OR
+		"Class / Teacher" LIKE "%sci%")
+		AND
+		"Class / Teacher" NOT LIKE "%AM%"
+		AND
+		"Class / Teacher"  NOT LIKE "%pm%";
+
+--Medical Science/Health Careers (PM)
+SELECT
+	DISTINCT("Class / Teacher"), COUNT("Class / Teacher")
+	FROM
+		Mapin
+	WHERE
+		("Class / Teacher" LIKE "%me%"
+		OR
+		"Class / Teacher" LIKE "%he%")
+		AND
+		("Class / Teacher" LIKE "%car%"
+		OR
+		"Class / Teacher" LIKE "%sci%")
+		AND
+		"Class / Teacher" LIKE "%pm%"
+	GROUP BY
+		"Class / Teacher";
+	
+UPDATE
+	Mapin
+	SET
+		"Class / Teacher" = "Medical Science/Health Careers (PM)"
+	WHERE
+		("Class / Teacher" LIKE "%me%"
+		OR
+		"Class / Teacher" LIKE "%he%")
+		AND
+		("Class / Teacher" LIKE "%car%"
+		OR
+		"Class / Teacher" LIKE "%sci%")
+		AND
+		"Class / Teacher" LIKE "%pm%";
+
+--Medical Science/Health Careers (AM)
+SELECT
+	DISTINCT("Class / Teacher"), COUNT("Class / Teacher")
+	FROM
+		Mapin
+	WHERE
+		("Class / Teacher"  LIKE "%me%"
+		OR
+		"Class / Teacher" LIKE "%he%")
+		AND
+		("Class / Teacher" LIKE "%car%"
+		OR
+		"Class / Teacher" LIKE "%sci%")
+		AND
+		"Class / Teacher" LIKE "%am%"
+	GROUP BY
+		"Class / Teacher";
+	
+UPDATE
+	Mapin
+	SET
+		"Class / Teacher" = "Medical Science/Health Careers (AM)"
+	WHERE
+		("Class / Teacher"  LIKE "%me%"
+		OR
+		"Class / Teacher" LIKE "%he%")
+		AND
+		("Class / Teacher" LIKE "%car%"
+		OR
+		"Class / Teacher" LIKE "%sci%")
+		AND
+		"Class / Teacher" LIKE "%am%";
+--Veterinary Science (Not Specified)
+SELECT
+	DISTINCT("Class / Teacher"), COUNT ("Class / Teacher")
+	FROM
+		Mapin
+	WHERE
+		"Class / Teacher" LIKE ("%vet%")
+		AND
+		"Class / Teacher" NOT LIKE ("%AM%")
+		AND 
+		"Class / Teacher" NOT LIKE ("%PM%")
+	GROUP BY
+		"Class / Teacher";
+
+UPDATE
+	Mapin
+	SET
+		"Class / Teacher" = "Veterinary Science (Not Specified)"
+	WHERE
+		"Class / Teacher" LIKE ("%vet%")
+		AND
+		"Class / Teacher" NOT LIKE ("%AM%")
+		AND 
+		"Class / Teacher" NOT LIKE ("%PM%")
+
+--Veterinary Science (AM)
+SELECT
+	DISTINCT("Class / Teacher"), COUNT ("Class / Teacher")
+	FROM
+		Mapin
+	WHERE
+		"Class / Teacher" LIKE ("%vet%")
+		AND
+		"Class / Teacher" LIKE ("%AM%")
+	GROUP BY
+		"Class / Teacher";
+
+UPDATE
+	Mapin
+	SET
+		"Class / Teacher" = "Veterinary Science (AM)"
+	WHERE
+		"Class / Teacher" LIKE ("%vet%")
+		AND
+		"Class / Teacher" LIKE ("%AM%");
+
+--Veterinary Science (PM)
+SELECT
+	DISTINCT("Class / Teacher"), COUNT ("Class / Teacher")
+	FROM
+		Mapin
+	WHERE
+		"Class / Teacher" LIKE ("%vet%")
+		AND
+		"Class / Teacher" LIKE ("%PM%")
+	GROUP BY
+		"Class / Teacher";
+
+UPDATE
+	Mapin
+	SET
+		"Class / Teacher" = "Veterinary Science (PM)"
+	WHERE
+		"Class / Teacher" LIKE ("%vet%")
+		AND
+		"Class / Teacher" LIKE ("%PM%");
+
+--N/A
+SELECT
+	DISTINCT("Class / Teacher"), COUNT ("Class / Teacher")
+	FROM
+		Mapin
+	WHERE
+		"Class / Teacher" LIKE ("%n/%")
+	GROUP BY
+		"Class / Teacher";
+
+UPDATE
+	Mapin
+	SET
+		"Class / Teacher" = "Not applicable"
+	WHERE
+		"Class / Teacher" LIKE ("%n/%");
