@@ -7,11 +7,12 @@ ORDER BY
 	"Date" DESC;
 
 -- Used to formating casing of entries and remove trailing spaces
+/*
 UPDATE 
 	Mapin
 SET
 	"Home School" = Proper(Trim("Home School"));
-
+*/
 
 -- Identifies Unique schools entries, including variations
 SELECT
@@ -66,7 +67,9 @@ SELECT
 		OR
 		"Home School"  LIKE "%/a%"
 		OR
-		"Home School" LIKE "%not%";
+		"Home School" LIKE "%not%"
+	GROUP BY
+		"Home School";
 UPDATE
 		Mapin
 	SET
@@ -74,7 +77,9 @@ UPDATE
 	WHERE
 		"Home School" LIKE "%n/%"
 		OR
-		"Home School"  LIKE "%/a%";
+		"Home School"  LIKE "%/a%"
+		OR
+		"Home School" LIKE "%not%";
 	
 -- Abraham Lincoln High School
 SELECT
