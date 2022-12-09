@@ -24,11 +24,11 @@ ORDER BY
 
 -- Identifies variations
 SELECT
-	DISTINCT("Home School") ,Count("Home School") AS 'Count'
+	DISTINCT("Home School") ,Count("*") AS 'Count' --using star operator to include null values
 FROM
 	Mapin
-WHERE
-	"Home School" LIKE "%evh%" --use last query as template for like condition
+/ * WHERE
+	"Home School" LIKE "%evh%" */ --use query as template for update condition
 GROUP BY
 	"Home School";
 
