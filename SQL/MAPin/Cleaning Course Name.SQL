@@ -26,9 +26,11 @@ SET
 
 
 SELECT
-	DISTINCT("Class / Teacher")
+	DISTINCT("Class / Teacher"), COUNT("Class / Teacher")
 FROM
 	Mapin
+GROUP BY
+	"Class / Teacher"
 ORDER BY
 	"Class / Teacher";
 
@@ -108,6 +110,8 @@ SELECT
 		"Class / Teacher" LIKE "%auto%"
 		AND
 		"Class / Teacher"  LIKE "%refin%"
+		AND
+		"Class / Teacher"  LIKE "%(am)%"
 	GROUP BY
 		"Class / Teacher";
 	
@@ -118,7 +122,9 @@ UPDATE
 	WHERE
 		"Class / Teacher" LIKE "%auto%"
 		AND
-		"Class / Teacher"  LIKE "%refin%";
+		"Class / Teacher"  LIKE "%refin%"
+		AND
+		"Class / Teacher"  LIKE "%(am)%";
 
 --Auto body Repair (Not Specified)
 SELECT
