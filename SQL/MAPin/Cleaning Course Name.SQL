@@ -26,7 +26,7 @@ SET
 
 
 SELECT
-	DISTINCT("Class / Teacher"), COUNT("Class / Teacher")
+	DISTINCT("Class / Teacher"), COUNT("*") -- use the star operator to include NULL values
 FROM
 	Mapin
 GROUP BY
