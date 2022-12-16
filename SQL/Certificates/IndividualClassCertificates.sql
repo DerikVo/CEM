@@ -28,7 +28,8 @@ Class for the 2022 year presentation slide
 SELECT 
 	DISTINCT(info."Parent Academy ID") as id,
 	COUNT(cert."Name of Class") as Count ,
-	info."First Name" || " " || info."Last Name" as "Full Name"
+	info."First Name" || " " || info."Last Name" as "Full Name",
+	strftime('%Y', cert.Date) as "year"
 From
 	R_certificate_csv cert
 	JOIN
