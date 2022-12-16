@@ -18,3 +18,26 @@ WHERE
 	info."Receptive to Email" = "Yes"
 Order BY
 	"Name of Class", "Parent Information" DESC
+/*
+
+Class for the 2022 year presentation slide
+
+*/
+
+--Certificates earned for taking individual classes in 2022
+SELECT 
+	DISTINCT(info."Parent Academy ID") as id,
+	COUNT(cert."Name of Class") as Count ,
+	info."First Name" || " " || info."Last Name" as "Full Name"
+From
+	R_certificate_csv cert
+	JOIN
+	R_parentInfo_csv info
+	ON
+	cert."Parent Information" = info."Parent Academy ID" 
+WHERE 
+	Date > "2022-01-01" 
+GROUP BY 
+	id, "Full Name"
+Order BY
+	id ASC
