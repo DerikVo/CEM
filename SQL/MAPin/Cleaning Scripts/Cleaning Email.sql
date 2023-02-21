@@ -1,4 +1,7 @@
-
+SELECT 
+	*
+FROM
+	MapinClean;
 --Removes whitespace and proper cases entries. Combining function seems to ignore one of the functions
 	UPDATE
 		MapinClean
@@ -131,13 +134,95 @@ Will need to aggregate a list of district domains to ensure accuracy.
 			MapinClean
 		WHERE
 			"Domain" LIKE '%ic%'
+			OR
+			"Domain" LIKE '@%ou%'
 		GROUP BY
 			"Domain";
 	UPDATE	
 		MapinClean
 		SET
+			Email = REPLACE(Email, '@ilcoud.com', '@icloud.com'),
+			Email = REPLACE(Email, '@cloud.com', '@icloud.com'),
 			Email = REPLACE(Email, '@ichoudhry.com', '@icloud.com'),
 			Email = REPLACE(Email, '@icould.org', '@icloud.com'),
 			Email = REPLACE(Email, '@icloud.com ', '@icloud.com'),
 			Email = REPLACE(Email, '@icould.com', '@icloud.com'),
 			Email = REPLACE(Email, '@icloud.com ', '@icloud.com');
+		
+--Gmail
+	SELECT
+		Email, count(Email)
+		FROM
+			MapinClean
+		WHERE 
+			Email LIKE '%@gm%'
+		GROUP BY
+			Email;
+	/*
+Testing using a like statement in the where clause to mass update
+Query is not updating any rows, will need to manually update
+	
+	UPDATE 
+		MapinClean
+		SET
+			Email = REPLACE(SUBSTRING(Email, instr(Email, '@')), '@gmail.comm', '@gmail.com')
+		WHERE
+			"Domain" LIKE '@gm%'
+			AND
+			("Domain" NOT LIKE "%Or%"
+			AND
+			"Domain" NOT LIKE "%,%");
+			*/
+	SELECT
+		SUBSTRING(Email, instr(Email, '@')) as "Domain", COUNT("Domain") 
+		FROM
+			MapinClean
+		WHERE
+			"Domain" LIKE '%mail%' --contain Ymail, yahoo uses ymail, so it may not be a typo
+			OR
+			"Domain" LIKE '@g%'
+			AND
+			("Domain" NOT LIKE "%Or%"
+			AND
+			"Domain" NOT LIKE "%,%")
+		GROUP BY
+			"Domain";
+	UPDATE
+		MapinClean
+		SET
+		Email = REPLACE(Email, '@fmail.com', '@gmail.com'),
+		Email = REPLACE(Email, '@gamil.com', '@gmail.com'),
+		Email = REPLACE(Email, '@gmail.comm', '@gmail.com'),
+		Email = REPLACE(Email, '@gmail', '@gmail.com');
+	
+--hotmail
+	SELECT
+		SUBSTRING(Email, instr(Email, '@')) as "Domain", COUNT("Domain") 
+		FROM
+			MapinClean
+		WHERE
+			"Domain" LIKE '@%ot%'
+		GROUP BY
+			"Domain";
+	UPDATE
+		MapinClean
+		SET
+		Email = REPLACE(Email, '@hotmail.edu', '@hotmail.com'),
+		Email = REPLACE(Email, '@gotmail.com', '@hotmail.com');
+--Yahoo
+	SELECT
+		SUBSTRING(Email, instr(Email, '@')) as "Domain", COUNT("Domain") 
+		FROM
+			MapinClean
+		WHERE
+			"Domain" LIKE '@%ya%'
+		GROUP BY
+			"Domain";
+	UPDATE
+		MapinClean
+		SET
+		Email = REPLACE(Email, '@yahoot.com', '@yahoo.com'),
+		Email = REPLACE(Email, '@yaho.com', '@yahoo.com'),
+		Email = REPLACE(Email, '@yahoo.com ', '@yahoo.com'),
+		Email = REPLACE(Email, '@yahoo.comm', '@yahoo.com')
+		
